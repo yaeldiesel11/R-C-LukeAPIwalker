@@ -1,12 +1,11 @@
-//almost the same as people component
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const Planets = () => {
+const Species = () => {
     const { id } = useParams();
-    const [planets, setPlanets] = useState(null);
+    const [species, setSpecies] = useState(null);
 
     const navigate = useNavigate();
 
@@ -14,8 +13,8 @@ const Planets = () => {
         const loadPerson = async () => {
             try {
                 const response = await axios
-                    .get(`https://swapi.dev/api/planets/${id}/`);
-                setPlanets(response.data);
+                    .get(`https://swapi.dev/api/species/${id}/`);
+                setSpecies(response.data);
                 console.log(response.data);
             } catch (error) {
                 console.error(error);
@@ -26,18 +25,19 @@ const Planets = () => {
         loadPerson();
     }, [id, navigate]);
 
-    if (planets === null) {
+    if (species === null) {
         return <div>Loading data...</div>;
     }
 
     return (
         <div>
-            <h1>{planets.name}</h1>
-            <p>Terrain: {planets.terrain}</p>
-            <p>Climate: {planets.climate}</p>
-            <p>Population: {planets.population}</p>
+            <h1>{species.name}</h1>
+            <p>Classification: {species.classification}</p>
+            <p>Designation: {species.designation}</p>
+            <p>Average lifespan: {species.average_lifespan}</p>
+            <p>Homeworld: {species.homeworld}</p>
         </div>
     );
 };
 
-export default Planets;
+export default Species;
