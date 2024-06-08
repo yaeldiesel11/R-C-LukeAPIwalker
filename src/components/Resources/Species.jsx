@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Homeworld from "../Homeworld";
 
 const Species = () => {
     const { id } = useParams();
@@ -35,7 +36,7 @@ const Species = () => {
             <p>Classification: {species.classification}</p>
             <p>Designation: {species.designation}</p>
             <p>Average lifespan: {species.average_lifespan}</p>
-            <p>Homeworld: {species.homeworld}</p>
+            <Homeworld url={species.homeworld} />
         </div>
     );
 };

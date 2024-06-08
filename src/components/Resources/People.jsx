@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Homeworld from "../Homeworld";
 
 const People = () => {
     const { id } = useParams();  // used to get the :id from the url (fixed) (important)
@@ -36,7 +37,7 @@ const People = () => {
             <p>Height: {people.height}</p>
             <p>Hair color: {people.hair_color}</p>
             <p>Birth year: {people.birth_year}</p>
-            <p>Homeworld: {people.homeworld}</p>
+            <Homeworld url={people.homeworld} />
         </div>
     );
 };
