@@ -2,10 +2,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Planets = () => {
     const { id } = useParams();  // used to get the :id from the url (fixed) (important)
     const [planets, setPlanets] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadPerson = async () => {
@@ -16,10 +19,12 @@ const Planets = () => {
                 console.log(response.data);
             } catch (error) {
                 console.error(error);
+                navigate('/error');
             }
         };
+
         loadPerson();
-    }, [id]);
+    }, [id, navigate]);
 
     if (planets === null) {
         return <div>Loading data...</div>;

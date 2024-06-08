@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const People = () => {
     const { id } = useParams();  // used to get the :id from the url (fixed) (important)
     const [people, setPeople] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadPerson = async () => {
@@ -15,10 +18,13 @@ const People = () => {
                 console.log(response.data);
             } catch (error) {
                 console.error(error);
+                navigate('/error');
             }
         };
+
         loadPerson();
-    }, [id]);
+    }, [id, navigate]);
+
 
     if (people === null) {
         return <div>Loading data...</div>;
